@@ -27,7 +27,7 @@ logging.level.org.hibernate.SQL=DEBUG
 logging.level.org.hiberna
 ```
 In the pom file the configuration is something like this
-```pom
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -132,5 +132,34 @@ In the pom file the configuration is something like this
 	</build>
 
 </project>
+```
+##Jpa tips for json deserialization
 
+For a OneToOne circular references, you should use Jackson anotations like this:
+
+```java
+//bi-directional one-to-one association to User
+	@OneToOne(fetch=FetchType.EAGER)
+	@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "user_id")
+	@JoinColumn(name="user_id", nullable=false, insertable=false, updatable=false)
+	private User user1;
+
+	//bi-directional one-to-one association to User
+	@JsonBackReference
+	@OneToOne(mappedBy="user1", fetch=FetchType.LAZY)
+	private User user2;
+```
+
+For OneToMany and ManyToOne you should use Jackson anotations like this:
+
+```java
+	//On socio entity bi-directional many-to-one association to User
+	@OneToMany(mappedBy="socio")
+	@JsonIgnore
+	private List<User> Usuarios;
+	
+	//On user entity bi-directional many-to-one association to Socio
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="socio_id")
+	private Socio socio;
 ```
