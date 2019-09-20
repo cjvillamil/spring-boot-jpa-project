@@ -133,7 +133,7 @@ In the pom file the configuration is something like this
 
 </project>
 ```
-##Jpa tips for json deserialization
+## Jpa tips for json deserialization
 
 For a OneToOne circular references, you should use Jackson anotations like this:
 
@@ -163,8 +163,8 @@ For OneToMany and ManyToOne you should use Jackson anotations like this:
 	@JoinColumn(name="socio_id")
 	private Socio socio;
 ```
-#TIPS AND TRICKS
-##Create a .war for a Angular project
+# TIPS AND TRICKS
+## Create a .war for a Angular project
 I'm beliving that in this world its so important that you learn all time, this is a pearl that i was find, becouse i need deploy a angular project into WAS server, its fine i'm not crazy; and yes this is possible.
 
 into root folder of your angular project execute
