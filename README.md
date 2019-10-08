@@ -165,7 +165,7 @@ For OneToMany and ManyToOne you should use Jackson anotations like this:
 	private Socio socio;
 ```
 
-## Create a .war for a Angular project
+## Create a .war for an Angular project
 I'm beliving that in this world its so important that you learn all time, this is a pearl that i was find, becouse i need deploy a angular project into WAS server, its fine i'm not crazy; and yes this is possible.
 
 into root folder of your angular project execute
